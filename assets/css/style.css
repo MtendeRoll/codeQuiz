@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --primary-color: black;
+}
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 20px;
+    justify-content: space-between;
+    margin: 10px;
+}
