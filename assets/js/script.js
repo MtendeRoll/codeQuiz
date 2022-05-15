@@ -13,111 +13,195 @@
 var timer = 120;
 //create elements
 var timerEl = document.querySelector("#timeLeft");
-var buttonEl = document.querySelector(".button");
-var containerEl = document.querySelector(".quizContainer");
+var beginButtonEl = document.querySelector(".begin-button");
+var mainEl = document.querySelector(".quizContainer");
+var listEl = document.querySelector(".answer-list");
+var messageWrapEl = document.querySelector(".message-list");
+var submitWrapEl = document.querySelector(".submit-wrapper");
 var questionEl;
 
 //time left function
 function timeLeft() {
   var timeInterval = setInterval(function () {
     if (timer > 0) {
-      timerEl = timer;
+      timerEl.textContent = timer;
       timer--;
     } else {
-      timerEl = "";
+      timerEl.textContent = " ";
       clearInterval(timeInterval);
     }
   }, 1000);
 }
 
 //questions array with objects containing questions, answer options and the correct answer
-
-var questions = [
+var questionsArray = [
   {
-    questions: "Question 1: Blah blah blah blah",
+    question1: "Question 1: Blah blah blah blah",
     answerOptions: ["a. yes", "b. no", "c. maybe", "d. idk"],
     correctAnswer: "d. idk",
   },
   {
-    questions: "Question 2: Blah blah blah blah",
+    question2: "Question 2: Blah blah blah blah",
     answerOptions: ["a. yes", "b. no", "c. maybe", "d. idk"],
     correctAnswer: "c. maybe",
   },
   {
-    questions: "Question 3: Blah blah blah blah",
+    question3: "Question 3: Blah blah blah blah",
     answerOptions: ["a. yes", "b. no", "c. maybe", "d. idk"],
     correctAnswer: "b. no",
   },
   {
-    questions: "Question 4: Blah blah blah blah",
+    question4: "Question 4: Blah blah blah blah",
     answerOptions: ["a. yes", "b. no", "c. maybe", "d. idk"],
     correctAnswer: "a. yes",
   },
 ];
 
-//start function: start button pressed, timer started and question 1 appears
-
-function startQuiz() {
-  container.remove();
-  questionBegins();
-}
-
-function questionBegins() {
-  questionEl = document.createElement("h2");
-  questionEl.textContent = questions[0].question1;
-  questionEl.setAttribute("class", "question");
-
-  containerEl.append(questionEl);
-  questions[0].answers.each(function (answer) {
-    var buttonEl = document.createElement("button");
-    buttonEl.textContent = answer;
-    //buttonEl.setAttribute("class", "answer");
-    buttonEl.setAttribute("value", answer);
-    buttonEl.onclick = function () {
-      if (this.value !== questionsObj[0].correct) {
-        var falseMessage = document.createElement("h3");
-        falseMessage.textContent = "Sorry, that's not right!";
-        //falseMessage.setAttribute("class", "incorrect-message");
-        listEl.appendChild(falseMessage);
-        timeLeft = timeLeft - 10;
-      } else {
-        var trueMessage = document.createElement("h3");
-        trueMessage.textContent = "That's right!";
-        //trueMessage.setAttribute("class", "correct-message");
-        listEl.appendChild(trueMessage);
-      }
-      questionEl.remove();
-      listEl.innerHTML = "";
-    };
-    listEl.appendChild(buttonEl);
-  });
-
-  questions[1].answer.each(function (answer) {
-    var buttonEl = document.createElement("button");
-    buttonEl.textContent = answer;
-    //buttonEl.setAttribute("class", "answer");
-    buttonEl.setAttribute("value", answer);
-    buttonEl.onclick = function () {
-      if (this.value !== questionsObj[0].correct) {
-        var falseMessage = document.createElement("h3");
-        falseMessage.textContent = "Sorry, that's not right!";
-        //falseMessage.setAttribute("class", "incorrect-message");
-        listEl.appendChild(falseMessage);
-        timeLeft = timeLeft - 10;
-      } else {
-        var trueMessage = document.createElement("h3");
-        trueMessage.textContent = "That's right!";
-        //trueMessage.setAttribute("class", "correct-message");
-        listEl.appendChild(trueMessage);
-      }
-      questionEl.remove();
-      listEl.innerHTML = "";
-    };
-    listEl.appendChild(buttonEl);
-  });
-}
-
-buttonEl.addEventListener("click", function () {
+//start function: begin button pressed, timer started and question 1 appears
+beginButtonEl.addEventListener("click", function () {
   timeLeft();
-  questionBegins();
+  beginQuiz();
 });
+
+function beginQuiz() {
+  var mainHeading = document.querySelector(".heading");
+  mainHeading.remove();
+  var mainDescription = document.querySelector(".description");
+  mainDescription.remove();
+  beginButtonEl.remove();
+
+  firstQuestion();
+}
+
+function firstQuestion() {
+  questionEl = document.createElement("h2");
+  questionEl.textContent = questionsArray[0].question1;
+  // questionEl.setAttribute("class", "question");
+
+  mainEl.append(questionEl);
+  questionsArray[0].answerOptions.forEach(function (answer) {
+    var buttonEl = document.createElement("button");
+    buttonEl.textContent = answer;
+    //buttonEl.setAttribute("class", "answer");
+    buttonEl.setAttribute("value", answer);
+    listEl.appendChild(buttonEl);
+    buttonEl.onclick = function () {
+      if (this.value !== questionsArray[0].correctAnswer) {
+        messageWrapEl.innerHTML = "";
+        var falseMessage = document.createElement("h3");
+        falseMessage.textContent = "Sorry, that's not right!";
+        //falseMessage.setAttribute("class", "incorrect-message");
+        messageWrapEl.appendChild(falseMessage);
+        timer = timer - 10;
+      } else {
+        messageWrapEl.textContent = "";
+        var trueMessage = document.createElement("h3");
+        trueMessage.textContent = "That's right!";
+        //trueMessage.setAttribute("class", "correct-message");
+        messageWrapEl.appendChild(trueMessage);
+      }
+      secondQuestion();
+    };
+  });
+}
+
+function secondQuestion() {
+  mainEl.innerHTML = "";
+  listEl.innerHTML = "";
+  questionEl = document.createElement("h2");
+  questionEl.textContent = questionsArray[1].question2;
+  // questionEl.setAttribute("class", "question");
+
+  mainEl.append(questionEl);
+  questionsArray[1].answerOptions.forEach(function (answer) {
+    var buttonEl = document.createElement("button");
+    buttonEl.textContent = answer;
+    //buttonEl.setAttribute("class", "answer");
+    buttonEl.setAttribute("value", answer);
+    listEl.appendChild(buttonEl);
+    buttonEl.onclick = function () {
+      if (this.value !== questionsArray[1].correctAnswer) {
+        messageWrapEl.innerHTML = "";
+        var falseMessage = document.createElement("h3");
+        falseMessage.textContent = "Sorry, that's not right!";
+        //falseMessage.setAttribute("class", "incorrect-message");
+        messageWrapEl.appendChild(falseMessage);
+        timer = timer - 10;
+      } else {
+        messageWrapEl.textContent = "";
+        var trueMessage = document.createElement("h3");
+        trueMessage.textContent = "That's right!";
+        //trueMessage.setAttribute("class", "correct-message");
+        messageWrapEl.appendChild(trueMessage);
+      }
+      thirdQuestion();
+    };
+  });
+}
+
+function thirdQuestion() {
+  mainEl.innerHTML = "";
+  listEl.innerHTML = "";
+  questionEl = document.createElement("h2");
+  questionEl.textContent = questionsArray[2].question3;
+  // questionEl.setAttribute("class", "question");
+
+  mainEl.append(questionEl);
+  questionsArray[2].answerOptions.forEach(function (answer) {
+    var buttonEl = document.createElement("button");
+    buttonEl.textContent = answer;
+    //buttonEl.setAttribute("class", "answer");
+    buttonEl.setAttribute("value", answer);
+    listEl.appendChild(buttonEl);
+    buttonEl.onclick = function () {
+      if (this.value !== questionsArray[2].correctAnswer) {
+        messageWrapEl.innerHTML = "";
+        var falseMessage = document.createElement("h3");
+        falseMessage.textContent = "Sorry, that's not right!";
+        //falseMessage.setAttribute("class", "incorrect-message");
+        messageWrapEl.appendChild(falseMessage);
+        timer = timer - 10;
+      } else {
+        messageWrapEl.textContent = "";
+        var trueMessage = document.createElement("h3");
+        trueMessage.textContent = "That's right!";
+        //trueMessage.setAttribute("class", "correct-message");
+        messageWrapEl.appendChild(trueMessage);
+      }
+      fourthQuestion();
+    };
+  });
+}
+
+function fourthQuestion() {
+  mainEl.innerHTML = "";
+  listEl.innerHTML = "";
+  questionEl = document.createElement("h2");
+  questionEl.textContent = questionsArray[3].question4;
+  // questionEl.setAttribute("class", "question");
+
+  mainEl.append(questionEl);
+  questionsArray[3].answerOptions.forEach(function (answer) {
+    var buttonEl = document.createElement("button");
+    buttonEl.textContent = answer;
+    //buttonEl.setAttribute("class", "answer");
+    buttonEl.setAttribute("value", answer);
+    listEl.appendChild(buttonEl);
+    buttonEl.onclick = function () {
+      if (this.value !== questionsArray[3].correctAnswer) {
+        messageWrapEl.innerHTML = "";
+        var falseMessage = document.createElement("h3");
+        falseMessage.textContent = "Sorry, that's not right!";
+        //falseMessage.setAttribute("class", "incorrect-message");
+        messageWrapEl.appendChild(falseMessage);
+        timer = timer - 10;
+      } else {
+        messageWrapEl.textContent = "";
+        var trueMessage = document.createElement("h3");
+        trueMessage.textContent = "That's right!";
+        //trueMessage.setAttribute("class", "correct-message");
+        messageWrapEl.appendChild(trueMessage);
+      }
+    };
+  });
+}
