@@ -88,17 +88,23 @@ function firstQuestion() {
     buttonEl.onclick = function () {
       if (this.value !== questionsArray[0].correctAnswer) {
         messageWrapEl.innerHTML = "";
-        var falseMessage = document.createElement("h3");
-        falseMessage.textContent = "Sorry, that's not right!";
+        var wrongResponse = document.createElement("h3");
+        wrongResponse.textContent = "Sorry, that's not right!";
         //falseMessage.setAttribute("class", "incorrect-message");
-        messageWrapEl.appendChild(falseMessage);
-        timer = timer - 10;
+        messageWrapEl.appendChild(wrongResponse);
+        window.setTimeout(function () {
+          wrongResponse.setAttribute("style", "display: none");
+        }, 500);
+        timer -= 10;
       } else {
         messageWrapEl.textContent = "";
-        var trueMessage = document.createElement("h3");
-        trueMessage.textContent = "That's right!";
+        var rightResponse = document.createElement("h3");
+        rightResponse.textContent = "That's right!";
         //trueMessage.setAttribute("class", "correct-message");
-        messageWrapEl.appendChild(trueMessage);
+        messageWrapEl.appendChild(rightResponse);
+        window.setTimeout(function () {
+          rightResponse.setAttribute("style", "display: none");
+        }, 500);
       }
       secondQuestion();
     };
@@ -122,17 +128,23 @@ function secondQuestion() {
     buttonEl.onclick = function () {
       if (this.value !== questionsArray[1].correctAnswer) {
         messageWrapEl.innerHTML = "";
-        var falseMessage = document.createElement("h3");
-        falseMessage.textContent = "Sorry, that's not right!";
+        var wrongResponse = document.createElement("h3");
+        wrongResponse.textContent = "Sorry, that's not right!";
         //falseMessage.setAttribute("class", "incorrect-message");
-        messageWrapEl.appendChild(falseMessage);
-        timer = timer - 10;
+        messageWrapEl.appendChild(wrongResponse);
+        window.setTimeout(function () {
+          wrongResponse.setAttribute("style", "display: none");
+        }, 500);
+        timer -= 10;
       } else {
         messageWrapEl.textContent = "";
-        var trueMessage = document.createElement("h3");
-        trueMessage.textContent = "That's right!";
+        var rightResponse = document.createElement("h3");
+        rightResponse.textContent = "That's right!";
         //trueMessage.setAttribute("class", "correct-message");
-        messageWrapEl.appendChild(trueMessage);
+        messageWrapEl.appendChild(rightResponse);
+        window.setTimeout(function () {
+          rightResponse.setAttribute("style", "display: none");
+        }, 500);
       }
       thirdQuestion();
     };
@@ -156,17 +168,23 @@ function thirdQuestion() {
     buttonEl.onclick = function () {
       if (this.value !== questionsArray[2].correctAnswer) {
         messageWrapEl.innerHTML = "";
-        var falseMessage = document.createElement("h3");
-        falseMessage.textContent = "Sorry, that's not right!";
+        var wrongResponse = document.createElement("h3");
+        wrongResponse.textContent = "Sorry, that's not right!";
         //falseMessage.setAttribute("class", "incorrect-message");
-        messageWrapEl.appendChild(falseMessage);
-        timer = timer - 10;
+        messageWrapEl.appendChild(wrongResponse);
+        window.setTimeout(function () {
+          wrongResponse.setAttribute("style", "display: none");
+        }, 500);
+        timer -= 10;
       } else {
         messageWrapEl.textContent = "";
-        var trueMessage = document.createElement("h3");
-        trueMessage.textContent = "That's right!";
+        var rightResponse = document.createElement("h3");
+        rightResponse.textContent = "That's right!";
         //trueMessage.setAttribute("class", "correct-message");
-        messageWrapEl.appendChild(trueMessage);
+        messageWrapEl.appendChild(rightResponse);
+        window.setTimeout(function () {
+          rightResponse.setAttribute("style", "display: none");
+        }, 500);
       }
       fourthQuestion();
     };
@@ -190,17 +208,23 @@ function fourthQuestion() {
     buttonEl.onclick = function () {
       if (this.value !== questionsArray[3].correctAnswer) {
         messageWrapEl.innerHTML = "";
-        var falseMessage = document.createElement("h3");
-        falseMessage.textContent = "Sorry, that's not right!";
+        var wrongResponse = document.createElement("h3");
+        wrongResponse.textContent = "Sorry, that's not right!";
         //falseMessage.setAttribute("class", "incorrect-message");
-        messageWrapEl.appendChild(falseMessage);
-        timer = timer - 10;
+        messageWrapEl.appendChild(wrongResponse);
+        window.setTimeout(function () {
+          wrongResponse.setAttribute("style", "display: none");
+        }, 500);
+        timer -= 10;
       } else {
         messageWrapEl.textContent = "";
-        var trueMessage = document.createElement("h3");
-        trueMessage.textContent = "That's right!";
+        var rightResponse = document.createElement("h3");
+        rightResponse.textContent = "That's right!";
         //trueMessage.setAttribute("class", "correct-message");
-        messageWrapEl.appendChild(trueMessage);
+        messageWrapEl.appendChild(rightResponse);
+        window.setTimeout(function () {
+          rightResponse.setAttribute("style", "display: none");
+        }, 500);
       }
     };
   });
