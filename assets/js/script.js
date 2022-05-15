@@ -11,14 +11,19 @@
 
 //create variables
 var timer = 120;
+
 //create elements
 var timerEl = document.querySelector("#timeLeft");
+var timeHeadingEl = document.querySelector(".time");
 var beginButtonEl = document.querySelector(".begin-button");
 var mainEl = document.querySelector(".quizContainer");
 var listEl = document.querySelector(".answer-list");
 var messageWrapEl = document.querySelector(".message-list");
 var submitWrapEl = document.querySelector(".submit-wrapper");
 var questionEl;
+
+//Initial character array
+var validInitialChars = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
 //time left function
 function timeLeft() {
@@ -63,34 +68,21 @@ beginButtonEl.addEventListener("click", function () {
   beginQuiz();
 });
 
-function beginQuiz() {
-  var mainHeading = document.querySelector(".heading");
-  mainHeading.remove();
-  var mainDescription = document.querySelector(".description");
-  mainDescription.remove();
-  beginButtonEl.remove();
-
-  firstQuestion();
-}
-
 function firstQuestion() {
   questionEl = document.createElement("h2");
   questionEl.textContent = questionsArray[0].question1;
-  // questionEl.setAttribute("class", "question");
 
   mainEl.append(questionEl);
   questionsArray[0].answerOptions.forEach(function (answer) {
     var buttonEl = document.createElement("button");
     buttonEl.textContent = answer;
-    //buttonEl.setAttribute("class", "answer");
     buttonEl.setAttribute("value", answer);
     listEl.appendChild(buttonEl);
     buttonEl.onclick = function () {
       if (this.value !== questionsArray[0].correctAnswer) {
         messageWrapEl.innerHTML = "";
         var wrongResponse = document.createElement("h3");
-        wrongResponse.textContent = "Sorry, that's not right!";
-        //falseMessage.setAttribute("class", "incorrect-message");
+        wrongResponse.textContent = "Incorrect!";
         messageWrapEl.appendChild(wrongResponse);
         window.setTimeout(function () {
           wrongResponse.setAttribute("style", "display: none");
@@ -99,8 +91,7 @@ function firstQuestion() {
       } else {
         messageWrapEl.textContent = "";
         var rightResponse = document.createElement("h3");
-        rightResponse.textContent = "That's right!";
-        //trueMessage.setAttribute("class", "correct-message");
+        rightResponse.textContent = "Correct!";
         messageWrapEl.appendChild(rightResponse);
         window.setTimeout(function () {
           rightResponse.setAttribute("style", "display: none");
@@ -116,21 +107,18 @@ function secondQuestion() {
   listEl.innerHTML = "";
   questionEl = document.createElement("h2");
   questionEl.textContent = questionsArray[1].question2;
-  // questionEl.setAttribute("class", "question");
 
   mainEl.append(questionEl);
   questionsArray[1].answerOptions.forEach(function (answer) {
     var buttonEl = document.createElement("button");
     buttonEl.textContent = answer;
-    //buttonEl.setAttribute("class", "answer");
     buttonEl.setAttribute("value", answer);
     listEl.appendChild(buttonEl);
     buttonEl.onclick = function () {
       if (this.value !== questionsArray[1].correctAnswer) {
         messageWrapEl.innerHTML = "";
         var wrongResponse = document.createElement("h3");
-        wrongResponse.textContent = "Sorry, that's not right!";
-        //falseMessage.setAttribute("class", "incorrect-message");
+        wrongResponse.textContent = "Incorrect!";
         messageWrapEl.appendChild(wrongResponse);
         window.setTimeout(function () {
           wrongResponse.setAttribute("style", "display: none");
@@ -139,8 +127,7 @@ function secondQuestion() {
       } else {
         messageWrapEl.textContent = "";
         var rightResponse = document.createElement("h3");
-        rightResponse.textContent = "That's right!";
-        //trueMessage.setAttribute("class", "correct-message");
+        rightResponse.textContent = "Correct!";
         messageWrapEl.appendChild(rightResponse);
         window.setTimeout(function () {
           rightResponse.setAttribute("style", "display: none");
@@ -156,21 +143,18 @@ function thirdQuestion() {
   listEl.innerHTML = "";
   questionEl = document.createElement("h2");
   questionEl.textContent = questionsArray[2].question3;
-  // questionEl.setAttribute("class", "question");
 
   mainEl.append(questionEl);
   questionsArray[2].answerOptions.forEach(function (answer) {
     var buttonEl = document.createElement("button");
     buttonEl.textContent = answer;
-    //buttonEl.setAttribute("class", "answer");
     buttonEl.setAttribute("value", answer);
     listEl.appendChild(buttonEl);
     buttonEl.onclick = function () {
       if (this.value !== questionsArray[2].correctAnswer) {
         messageWrapEl.innerHTML = "";
         var wrongResponse = document.createElement("h3");
-        wrongResponse.textContent = "Sorry, that's not right!";
-        //falseMessage.setAttribute("class", "incorrect-message");
+        wrongResponse.textContent = "Incorrect!";
         messageWrapEl.appendChild(wrongResponse);
         window.setTimeout(function () {
           wrongResponse.setAttribute("style", "display: none");
@@ -179,8 +163,7 @@ function thirdQuestion() {
       } else {
         messageWrapEl.textContent = "";
         var rightResponse = document.createElement("h3");
-        rightResponse.textContent = "That's right!";
-        //trueMessage.setAttribute("class", "correct-message");
+        rightResponse.textContent = "Correct!";
         messageWrapEl.appendChild(rightResponse);
         window.setTimeout(function () {
           rightResponse.setAttribute("style", "display: none");
@@ -196,21 +179,18 @@ function fourthQuestion() {
   listEl.innerHTML = "";
   questionEl = document.createElement("h2");
   questionEl.textContent = questionsArray[3].question4;
-  // questionEl.setAttribute("class", "question");
 
   mainEl.append(questionEl);
   questionsArray[3].answerOptions.forEach(function (answer) {
     var buttonEl = document.createElement("button");
     buttonEl.textContent = answer;
-    //buttonEl.setAttribute("class", "answer");
     buttonEl.setAttribute("value", answer);
     listEl.appendChild(buttonEl);
     buttonEl.onclick = function () {
       if (this.value !== questionsArray[3].correctAnswer) {
         messageWrapEl.innerHTML = "";
         var wrongResponse = document.createElement("h3");
-        wrongResponse.textContent = "Sorry, that's not right!";
-        //falseMessage.setAttribute("class", "incorrect-message");
+        wrongResponse.textContent = "Incorrect!";
         messageWrapEl.appendChild(wrongResponse);
         window.setTimeout(function () {
           wrongResponse.setAttribute("style", "display: none");
@@ -219,13 +199,86 @@ function fourthQuestion() {
       } else {
         messageWrapEl.textContent = "";
         var rightResponse = document.createElement("h3");
-        rightResponse.textContent = "That's right!";
-        //trueMessage.setAttribute("class", "correct-message");
+        rightResponse.textContent = "Correct!";
         messageWrapEl.appendChild(rightResponse);
         window.setTimeout(function () {
           rightResponse.setAttribute("style", "display: none");
         }, 500);
       }
+      initialsPrompt(timer);
     };
   });
+}
+
+//What if the timer runs out/end of quiz
+function endQuiz() {
+  if (timer === 0 || fourthQuestion === true) {
+    mainEl.setAttribute("style", "display: none");
+    initialsPrompt();
+  } else {
+    fourthQuestion();
+  }
+}
+
+function initialsPrompt() {
+  questionEl.remove();
+  listEl.innerHTML = "";
+  timeHeadingEl.remove();
+
+  var finalScore = timer;
+  var headingEl = document.createElement("h2");
+  headingEl.textContent = "Your final score is " + finalScore + " !";
+
+  var labelEl = document.createElement("label");
+  labelEl.setAttribute("for", "name");
+  labelEl.textContent = "Enter initials:";
+
+  var submitEl = document.createElement("input");
+  submitEl.setAttribute("type", "text");
+  submitEl.setAttribute("name", "name");
+  submitEl.setAttribute("placeholder", "Initials");
+
+  var submitButtonEl = document.createElement("button");
+  submitButtonEl.href = "./highscores.html";
+  submitButtonEl.textContent = "Submit";
+
+  mainEl.append(headingEl);
+  submitWrapEl.append(labelEl);
+  submitWrapEl.append(submitEl);
+  submitWrapEl.append(submitButtonEl);
+
+  messageWrapEl.innerHTML = "";
+
+  if (submitEl.value !== null) {
+    var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+    submitButtonEl.addEventListener("click", function (event) {
+      event.preventDefault();
+      var userName = submitEl.value;
+      var userScore = {
+        userScore: finalScore,
+        userInitials: userName,
+      };
+      // set new submission to local storage
+      highscores.push(userScore);
+      localStorage.setItem("highscores", JSON.stringify(highscores));
+      window.open("./highscores.html", "_self");
+    });
+  }
+
+  function alertInitials() {
+    if (submitEl.value === null || submitEl.value === "") {
+      window.alert("Invalid entry! Please enter up to 2 initials between A-Z");
+    }
+  }
+  mainEl.append(headingEl);
+}
+
+function beginQuiz() {
+  var mainHeading = document.querySelector(".heading");
+  mainHeading.remove();
+  var mainDescription = document.querySelector(".description");
+  mainDescription.remove();
+  beginButtonEl.remove();
+
+  firstQuestion();
 }

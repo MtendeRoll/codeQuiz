@@ -1,25 +1,27 @@
-//global variables
-var scoresListEl = document.querySelector(".highscores-list");
-var deleteButtonEl = document.querySelector(".clear-btn");
+var highscoresListEl = document.querySelector(".highscores-list");
+var clearButtonEl = document.querySelector(".clear-btn");
 
-//Delete Button Event Listener
-deleteButtonEl.addEventListener("click", function () {
-  scoresListEl.innerHTML = "";
+function scoresList() {
+  //retrieve JSON array from local storage, parse it, and save to var highscores
+  var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+
+  //sorts highscores high to low by userScore
+  highscores.sort((a, b) => {
+    return b.userScore - a.userScore;
+  });
+
+  //creates an li for each object in highscores, sets values with object references, and appends the li to ol
+  for (var i = 0; i < highscores.length; i++) {
+    var listItemEl = document.createElement("li");
+    listItemEl.textContent = highscores[i].userInitials + " - " + highscores[i].userScore;
+    highscoresListEl.append(listItemEl);
+  }
+}
+
+// clear high scores button
+clearButtonEl.addEventListener("click", function () {
+  highscoresListEl.innerHTML = "";
   localStorage.clear();
 });
 
-//function that saves high scores from last page
-var loadScores = function () {
-  var savedScores = JSON.parse(localStorage.getItem("userScoreArray")) || [];
-  savedScores.sort((a, b) => {
-    return b.score - a.score;
-  });
-  for (var i = 0; i < savedScores.length; i++) {
-    var loadedScore = document.createElement("li");
-    loadedScore.textContent = savedScores[i].name + ": " + savedScores[i].score;
-    loadedScore.classList.add("highscores-list-item");
-    scoresListEl.appendChild(loadedScore);
-  }
-};
-
-loadScores();
+scoresList();
