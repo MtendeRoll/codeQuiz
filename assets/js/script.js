@@ -22,9 +22,6 @@ var messageWrapEl = document.querySelector(".message-list");
 var submitWrapEl = document.querySelector(".submit-wrapper");
 var questionEl;
 
-//Initial character array
-var validInitialChars = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-
 //time left function
 function timeLeft() {
   var timeInterval = setInterval(function () {
@@ -41,24 +38,24 @@ function timeLeft() {
 //questions array with objects containing questions, answer options and the correct answer
 var questionsArray = [
   {
-    question1: "Question 1: Blah blah blah blah",
-    answerOptions: ["a. yes", "b. no", "c. maybe", "d. idk"],
-    correctAnswer: "d. idk",
+    question1: "Question 1: When you are stuck with a problem in your code, you should?",
+    answerOptions: ["a. cry yourself to sleep", "b. enter existential crisis mode", "c. give up", "d. Google...gooogle is always your friend"],
+    correctAnswer: "d. Google...gooogle is always your friend",
   },
   {
-    question2: "Question 2: Blah blah blah blah",
-    answerOptions: ["a. yes", "b. no", "c. maybe", "d. idk"],
-    correctAnswer: "c. maybe",
+    question2: "Question 2: Which statement correctly stores data into the Web Storage API?",
+    answerOptions: ["a. the submit button", "b. localStorage.getItem", "c. localStorage.setItem", "d. setItem.localStorage"],
+    correctAnswer: "c. localStorage.setItem",
   },
   {
-    question3: "Question 3: Blah blah blah blah",
-    answerOptions: ["a. yes", "b. no", "c. maybe", "d. idk"],
-    correctAnswer: "b. no",
+    question3: "Question 3: Which of the following is NOT a reason to validate a user's responses?",
+    answerOptions: ["a. Increases the overall quality of the user data", "b. Improves the user experience", "c. Offers the user an opportunity to enter a correct response", "d. Reduces bogus answers getting stored in the database."],
+    correctAnswer: "b. Improves the user experience.",
   },
   {
-    question4: "Question 4: Blah blah blah blah",
-    answerOptions: ["a. yes", "b. no", "c. maybe", "d. idk"],
-    correctAnswer: "a. yes",
+    question4: "Question 4: What makes webpages fully interactive",
+    answerOptions: ["a. JavaScript", "b. CSS", "c. HTML", "d. A new developer"],
+    correctAnswer: "a. JavaScript",
   },
 ];
 
@@ -210,16 +207,6 @@ function fourthQuestion() {
   });
 }
 
-//What if the timer runs out/end of quiz
-function endQuiz() {
-  if (timer === 0 || fourthQuestion === true) {
-    mainEl.setAttribute("style", "display: none");
-    initialsPrompt();
-  } else {
-    fourthQuestion();
-  }
-}
-
 function initialsPrompt() {
   questionEl.remove();
   listEl.innerHTML = "";
@@ -258,8 +245,21 @@ function initialsPrompt() {
         userScore: finalScore,
         userInitials: userName,
       };
-      // set new submission to local storage
-      highscores.push(userScore);
+
+      // checking + updating usernames in local storage
+      var updated = false;
+
+      for (var i = 0; i < highscores.length; i++) {
+        if (highscores[i].userInitials === userName) {
+          highscores[i].userScore = finalScore;
+          updated = true;
+        }
+      }
+
+      if (!updated) {
+        highscores.push(userScore);
+      }
+
       localStorage.setItem("highscores", JSON.stringify(highscores));
       window.open("./highscores.html", "_self");
     });
@@ -270,6 +270,7 @@ function initialsPrompt() {
       window.alert("Invalid entry! Please enter up to 2 initials between A-Z");
     }
   }
+
   mainEl.append(headingEl);
 }
 
@@ -281,4 +282,14 @@ function beginQuiz() {
   beginButtonEl.remove();
 
   firstQuestion();
+}
+
+//What if the timer runs out/end of quiz
+function endQuiz() {
+  if (timer === 0 || fourthQuestion === true) {
+    mainEl.setAttribute("style", "display: none");
+    initialsPrompt();
+  } else {
+    fourthQuestion();
+  }
 }
