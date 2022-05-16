@@ -21,7 +21,7 @@ Mock-Up
 
 # Generate Password Mock-Up
 
-![mock-up](./assets/images/)
+![mock-up](./assets/images/mockUp.gif)
 
 # View Password Generator
 
