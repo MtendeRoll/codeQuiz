@@ -9,22 +9,21 @@
   </head>
   <body>
     <header>
-      <a id="highscores" href="./highscores.html">View High Scores</a>
-      <p class="time">Time Left: <span id="timeLeft"></span></p>
+      <a id="highscores" href="./highscores.html">See High Scores</a>
+      <p id="showTime" class="hide time">Time Left: <span class="timer" id="timeLeft"></span></p>
     </header>
 
     <!-- about the game section and start button -->
-    <div>
-      <h1 class="heading">JAVASCRIPT QUIZ</h1>
+    <div class="quizContainer">
+      <h1 class="heading">THE ULTIMATE JAVASCRIPT QUIZ!</h1>
       <p class="description">Answer all the questions within the alloted time. Every wrong question loses you 10s. Save your highscore with your Initials at the end of the game. May the odds ever be in your favour!</p>
       <button type="button" class="begin-button">BEGIN!</button>
-    </div>
-    <!-- container to hold the questions -->
-    <div>
-      <div class="quizContainer"></div>
-      <div class="answer-list"></div>
-      <div class="submit-wrapper"></div>
-      <div class="message-list"></div>
+      <div class="questionContainer">
+        <div class="question-wrapper"></div>
+        <div class="answer-list"></div>
+        <div class="submitContainer"></div>
+        <div class="message-list"></div>
+      </div>
     </div>
 
     <script type="text/javascript" src="./assets/js/script.js"></script>
